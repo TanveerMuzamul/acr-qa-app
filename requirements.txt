@@ -1,0 +1,1 @@
+-r acr_qa_app/requirements.txt

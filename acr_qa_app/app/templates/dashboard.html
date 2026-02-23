@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1>Dashboard</h1>
+    <p class="muted">Upload a ZIP file containing DICOM images to generate a QA report.</p>
+  </div>
+</div>
+
+<div class="grid-two">
+  <div class="card">
+    <div class="card-header"><h2>Upload DICOM ZIP</h2></div>
+    <div class="card-body">
+      <form action="{{ url_for('main.upload') }}" method="post" enctype="multipart/form-data">
+        <label for="zipfile">DICOM ZIP</label>
+        <input id="zipfile" type="file" name="zipfile" accept=".zip" required />
+        <div style="height:12px"></div>
+        <button class="btn btn-primary" type="submit">Upload &amp; Run QA</button>
+        <div class="muted small" style="margin-top:10px">Upload a .zip containing DICOM files (files may be .dcm or extensionless).</div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><h2>QA Runs</h2></div>
+    <div class="card-body">
+      {% if jobs %}
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Uploaded</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for job in jobs %}
+                <tr>
+                  <td class="mono">{{ job.id }}</td>
+                  <td class="mono">{{ job.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                  <td><span class="badge badge-pass">READY</span></td>
+                  <td><a class="btn" href="{{ url_for('main.view_report', job_id=job.id) }}">Open</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="muted">No uploads yet.</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

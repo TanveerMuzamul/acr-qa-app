@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1>Register</h1>
+    <p class="muted">Create an account to run QA uploads.</p>
+  </div>
+</div>
+
+<div class="card" style="max-width:520px">
+  <div class="card-body">
+    <form method="post">
+      {{ form.hidden_tag() }}
+
+      <label>Full name</label>
+      {{ form.full_name() }}
+
+      <label>Email</label>
+      {{ form.email() }}
+
+      <label>Password</label>
+      {{ form.password() }}
+
+      <label>Confirm password</label>
+      {{ form.confirm_password() }}
+
+      <div style="height:14px"></div>
+      {{ form.submit(class_='btn btn-primary') }}
+
+      <div style="height:10px"></div>
+      <div class="muted small">Already registered? <a href="{{ url_for('auth.login') }}" style="color:var(--primary)">Login</a></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

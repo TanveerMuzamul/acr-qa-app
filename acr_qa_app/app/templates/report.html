@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1>ACR QA Report</h1>
+    <p class="muted">{{ report.message }}</p>
+  </div>
+  <div class="actions">
+    <a class="btn btn-light" href="{{ url_for('main.dashboard') }}">Back</a>
+    <a class="btn btn-primary" href="{{ url_for('main.download_report', job_id=job.id) }}">Download JSON</a>
+  </div>
+</div>
+
+{% if report.plots %}
+  <div class="grid-two">
+    {% for p in report.plots %}
+      <div class="card">
+        <div class="card-header">
+          <h2>{{ p.title }}</h2>
+        </div>
+        <div class="card-body">
+          <div class="plot-wrap">
+            <img class="plot-img" src="{{ p.url }}" alt="{{ p.title }}" />
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% for section in report.sections %}
+  <div class="card">
+    <div class="card-header">
+      <h2>{{ section.name }}</h2>
+    </div>
+
+    <div class="card-body">
+      {% if section.kind == 'metrics' %}
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Expected</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in section.rows %}
+                <tr>
+                  <td>
+                    <div class="metric-name">{{ row.label }}</div>
+                    {% if row.notes %}<div class="muted small">{{ row.notes }}</div>{% endif %}
+                  </td>
+                  <td class="mono">{{ row.value }}</td>
+                  <td class="mono">{{ row.expected }}</td>
+                  <td>
+                    <span class="badge badge-{{ row.status }}">{{ row.status|upper }}</span>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div class="table-wrap">
+          <table class="table">
+            <tbody>
+              {% for row in section.rows %}
+                <tr>
+                  <td class="muted">{{ row.label }}</td>
+                  <td class="mono">{{ row.value }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

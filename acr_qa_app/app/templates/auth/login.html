@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header">
+  <div>
+    <h1>Login</h1>
+    <p class="muted">Sign in to access the dashboard.</p>
+  </div>
+</div>
+
+<div class="card" style="max-width:520px">
+  <div class="card-body">
+    <form method="post">
+      {{ form.hidden_tag() }}
+
+      <label>Email</label>
+      {{ form.email() }}
+
+      <label>Password</label>
+      {{ form.password() }}
+
+      <div style="height:14px"></div>
+      {{ form.submit(class_='btn btn-primary') }}
+
+      <div style="height:10px"></div>
+      <div class="muted small">Need an account? <a href="{{ url_for('auth.register') }}" style="color:var(--primary)">Register</a></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "ACR QA" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="navbar">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>ACR QA</span>
+      </div>
+
+      <div class="nav-actions">
+        {% if current_user.is_authenticated %}
+          <a class="btn" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+          <a class="btn btn-danger" href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+          <a class="btn" href="{{ url_for('auth.login') }}">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, msg in messages %}
+          <div class="alert {% if category == 'success' %}alert-success{% elif category == 'danger' %}alert-danger{% endif %}">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <div class="footer">ACR QA pipeline</div>
+  </div>
+</body>
+</html>
