@@ -8,7 +8,7 @@ It includes:
 - End-to-end QA runner that generates a JSON report
 - Light UI (Bootstrap 5)
 
-> ⚠️ The QA logic in `app/services/qa_metrics.py` is a **demo**.
+>  The QA logic in `app/services/qa_metrics.py` 
 > Replace each metric function with the real ACR implementation as the project progresses.
 
 ---
