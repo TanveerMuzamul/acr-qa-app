@@ -1,0 +1,25 @@
+ACR QA (Rebuilt) - Windows Run Guide
+===================================
+
+1) Open Command Prompt (CMD) and go to the project folder:
+   cd C:\path\to\acr_qa_app_rebuilt
+
+2) Create and activate a virtual environment:
+   python -m venv .venv
+   .venv\Scripts\activate
+
+3) Install requirements:
+   pip install -r acr_qa_app\requirements.txt
+
+4) Create .env from example:
+   copy acr_qa_app\.env.example acr_qa_app\.env
+
+   If you see "Request Entity Too Large" when uploading a ZIP,
+   open acr_qa_app\.env and increase this value (example):
+     UPLOAD_MAX_MB=1024
+
+5) Run the app:
+   python acr_qa_app\run.py
+
+6) Open in browser:
+   http://127.0.0.1:5000

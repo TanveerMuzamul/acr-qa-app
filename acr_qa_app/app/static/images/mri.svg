@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650" fill="none" role="img" aria-label="MRI scanner illustration">
+  <defs>
+    <linearGradient id="g1" x1="120" y1="120" x2="760" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="200" y1="150" x2="700" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1e40af" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#2563eb" stop-opacity=".08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- subtle backdrop blob -->
+  <path d="M180 250c40-110 160-170 270-170 140 0 270 90 290 220 20 130-60 250-190 290-130 40-330 10-410-90-70-90-10-170 40-250Z" fill="#e9f1ff"/>
+
+  <!-- base shadow -->
+  <ellipse cx="455" cy="560" rx="290" ry="46" fill="#0f172a" opacity=".06"/>
+
+  <!-- scanner body -->
+  <rect x="155" y="185" width="590" height="340" rx="42" fill="url(#g1)" stroke="#0f172a" stroke-opacity=".10"/>
+  <rect x="170" y="200" width="560" height="310" rx="36" fill="url(#g2)" opacity=".85"/>
+
+  <!-- scanner ring -->
+  <circle cx="420" cy="355" r="150" fill="#ffffff" stroke="#0f172a" stroke-opacity=".10"/>
+  <circle cx="420" cy="355" r="110" fill="#f8fafc"/>
+  <circle cx="420" cy="355" r="90" fill="#0f172a" opacity=".05"/>
+
+  <!-- bed -->
+  <rect x="400" y="380" width="320" height="58" rx="24" fill="#ffffff" stroke="#0f172a" stroke-opacity=".10"/>
+  <rect x="430" y="395" width="260" height="28" rx="14" fill="#eef2ff"/>
+
+  <!-- control panel -->
+  <rect x="610" y="250" width="95" height="70" rx="16" fill="#ffffff" stroke="#0f172a" stroke-opacity=".10"/>
+  <circle cx="637" cy="285" r="7" fill="#2563eb"/>
+  <circle cx="660" cy="285" r="7" fill="#16a34a"/>
+  <circle cx="683" cy="285" r="7" fill="#dc2626"/>
+  <rect x="632" y="302" width="56" height="8" rx="4" fill="#0f172a" opacity=".12"/>
+
+  <!-- small brand tag -->
+  <rect x="210" y="230" width="120" height="32" rx="16" fill="#2563eb" opacity=".14"/>
+  <text x="225" y="252" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1e40af">MRI</text>
+
+  <!-- floor line -->
+  <path d="M110 560H800" stroke="#0f172a" stroke-opacity=".08" stroke-width="4" stroke-linecap="round"/>
+</svg>

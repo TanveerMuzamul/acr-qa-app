@@ -1,0 +1,180 @@
+/*
+  ACR QA – clean medical theme
+  - Light background
+  - High contrast typography
+  - Subtle cards
+  - Consistent buttons/badges
+*/
+
+:root{
+  /* Brand */
+  --bs-primary: #2563eb;          /* medical blue */
+  --bs-primary-rgb: 37,99,235;
+  --bs-success: #16a34a;
+  --bs-success-rgb: 22,163,74;
+  --bs-danger: #dc2626;
+  --bs-danger-rgb: 220,38,38;
+
+  /* Surfaces */
+  --bs-body-bg: #f5f8ff;
+  --bs-body-color: #0f172a;
+  --surface: #ffffff;
+  --surface-2: #f1f5ff;
+  --border: rgba(15,23,42,.10);
+
+  /* Text */
+  --muted: rgba(15,23,42,.62);
+}
+
+body{
+  background: radial-gradient(1200px 600px at 15% 5%, #e9f1ff 0%, rgba(233,241,255,0) 55%),
+              radial-gradient(1000px 500px at 85% 10%, #eef2ff 0%, rgba(238,242,255,0) 60%),
+              var(--bs-body-bg) !important;
+  color: var(--bs-body-color) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navbar */
+.navbar{
+  background: linear-gradient(90deg, #1e40af, #2563eb) !important;
+  box-shadow: 0 14px 40px rgba(2,6,23,.18);
+}
+.navbar .btn{
+  border-radius: 999px;
+}
+
+/* Typography helpers */
+.text-muted{ color: var(--muted) !important; }
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .20rem .60rem;
+  border-radius: 999px;
+  background: rgba(37,99,235,.10);
+  color: rgba(30,64,175,.95);
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Cards */
+.card{
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+.shadow-sm{
+  box-shadow: 0 10px 32px rgba(2,6,23,.08) !important;
+}
+
+/* Buttons */
+.btn{
+  border-radius: 12px;
+  font-weight: 600;
+}
+.btn-outline-primary{
+  border-color: rgba(37,99,235,.35);
+}
+.btn-outline-secondary{
+  border-color: rgba(15,23,42,.20);
+  color: rgba(15,23,42,.80);
+}
+.btn-outline-secondary:hover{
+  background: rgba(15,23,42,.04);
+}
+
+/* Inputs */
+.form-control, .form-select{
+  border-radius: 14px;
+  border-color: rgba(15,23,42,.14);
+  background: #fff;
+}
+.form-control:focus, .form-select:focus{
+  border-color: rgba(37,99,235,.55);
+  box-shadow: 0 0 0 .2rem rgba(37,99,235,.18);
+}
+.form-text{ color: rgba(15,23,42,.55) !important; }
+
+/* Tables */
+.table thead th{
+  font-size: .80rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: rgba(15,23,42,.60);
+}
+.table > :not(caption) > * > *{
+  border-bottom-color: rgba(15,23,42,.10);
+}
+
+/* Badges */
+.badge{ border-radius: 999px; }
+
+/* Slice preview */
+.slice-preview{
+  max-height: 560px;
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+/* Alerts (errors only) */
+.alert{
+  border: 1px solid rgba(220,38,38,.25);
+  border-radius: 14px;
+  background: rgba(220,38,38,.08);
+  color: rgba(127,29,29,.95);
+}
+
+/* Landing */
+.landing{
+  display: flex;
+  justify-content: center;
+  margin-top: 42px;
+}
+.landing-card{
+  width: 100%;
+  max-width: 980px;
+}
+.landing-grid{
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 28px;
+  align-items: center;
+  padding: 26px;
+}
+.landing-title{
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+.landing-subtitle{
+  margin: 0;
+  color: var(--muted);
+}
+.landing-visual{
+  display: flex;
+  justify-content: center;
+}
+.landing-img{
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  filter: drop-shadow(0 18px 40px rgba(2,6,23,.12));
+}
+
+/* Dashboard hero */
+.dashboard-hero-img{
+  width: 180px;
+  max-width: 40vw;
+  height: auto;
+  opacity: .96;
+  filter: drop-shadow(0 18px 40px rgba(2,6,23,.10));
+}
+
+@media (max-width: 992px){
+  .landing-grid{ grid-template-columns: 1fr; }
+  .landing-visual{ order: -1; }
+}

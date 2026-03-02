@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h1 class="h4 mb-0">Dashboard</h1>
+    <div class="text-muted small">Upload a DICOM ZIP to run QA.</div>
+  </div>
+</div>
+
+<div class="dashboard-hero card shadow-sm mb-4">
+  <div class="card-body p-4 d-flex align-items-center justify-content-between gap-4 flex-wrap">
+    <div>
+      <div class="eyebrow">MRI Phantom QA</div>
+      <div class="fw-semibold" style="font-size:1.15rem;">Fast slice review with clear PASS / FAIL results.</div>
+      <div class="text-muted small mt-1">Upload → select series/slice → export JSON.</div>
+    </div>
+    <img class="dashboard-hero-img" src="{{ url_for('static', filename='images/mri.svg') }}" alt="MRI scanner illustration">
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="h6">Upload DICOM ZIP</h2>
+        <form method="post" action="{{ url_for('main.upload') }}" enctype="multipart/form-data">
+          <div class="mb-3">
+            <input class="form-control" type="file" name="zip_file" accept=".zip" required>
+            <div class="form-text">Upload a .zip containing DICOM files.</div>
+          </div>
+          <button class="btn btn-primary" type="submit">Upload & Run QA</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="h6">Your QA runs</h2>
+        {% if jobs %}
+          <div class="list-group">
+            {% for job in jobs %}
+              <div class="list-group-item d-flex justify-content-between align-items-center gap-3">
+                <div>
+                  <div class="fw-semibold">Job #{{ job.id }}</div>
+                  <div class="small text-muted">{{ job.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</div>
+                  {% if job.share_token %}
+                    <div class="small text-muted mt-1">
+                      Share link: <a href="{{ url_for('main.share_report', token=job.share_token, _external=True) }}" target="_blank">open</a>
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="d-flex gap-2">
+                  <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('main.report', job_id=job.id) }}">Open</a>
+                  {% if job.share_token %}
+                    <button class="btn btn-sm btn-outline-primary" type="button" onclick="navigator.clipboard.writeText('{{ url_for('main.share_report', token=job.share_token, _external=True) }}'); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy share link', 1500);">Copy share link</button>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="text-muted">No uploads yet.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

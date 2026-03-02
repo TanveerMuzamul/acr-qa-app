@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="landing">
+  <div class="landing-card card shadow-sm">
+    <div class="landing-grid">
+      <div>
+        <div class="eyebrow">ACR QA</div>
+        <h1 class="landing-title">ACR MRI Quality Assurance</h1>
+        <p class="landing-subtitle">Upload a DICOM ZIP and review slice‑level QA results.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Create account</a>
+          <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>
+        </div>
+      </div>
+      <div class="landing-visual" aria-hidden="true">
+        <img class="landing-img" src="{{ url_for('static', filename='images/mri.svg') }}" alt="MRI scanner illustration">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
